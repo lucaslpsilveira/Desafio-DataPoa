@@ -17,17 +17,7 @@ export class ApiService {
   listaOnibus(){
     return this.http.get<Linha[]>(this.apiUrl)
       .pipe(      
-        tap(linhas => console.log('leu os onibus')),
-        catchError(this.handleError('getOnibus', []))
+        tap(linhas => console.log('leu os onibus')),        
       );
   }  
-
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
-      console.error(error);
-
-      return of(result as T);
-    };
-  }
 }

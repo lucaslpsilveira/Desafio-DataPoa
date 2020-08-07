@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Linha } from './linha';
-import { Observable } from 'rxjs';
+import { Observable, empty, Subject } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -12,10 +13,22 @@ export class HomeComponent implements OnInit {
 
   linhas$: Observable<Linha[]>;
 
+  error$ = new Subject<boolean>();
+
   constructor(private service: ApiService) { }
 
   ngOnInit(): void {
-    this.linhas$ = this.service.listaOnibus();
+    this.onRefresh();
+  }
+
+  onRefresh(){
+    this.linhas$ = this.service.listaOnibus()
+      .pipe(
+        catchError(error => {
+          this.error$.next(true);
+          return empty();          
+        })
+      );
   }
 
 }

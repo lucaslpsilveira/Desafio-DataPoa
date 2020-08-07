@@ -1,14 +1,17 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="page-header">
-            <h1>Lista Linhas</h1>
-        </div>
+            <h1 class='float-left'>Lista Linhas</h1>                        
+            <button class='btn btn-secondary float-right' (click)="onRefresh()">Atualizar</button>
+        </div>                
+    </div>
+    <div class='col-lg-12'>
         <p>Através dessa aplicação você pode fazer pesquisa por linhas de ônibus e lotações na cidade de porto alegre.</p>
     </div>
 </div>
 <div class="row">
     <div class="col-lg-12 mb-2">
-        <input type="search" id="search" value="" class="form-control" placeholder="Pesquisa">
+        <input type="search" id="search" value="" class="form-control" placeholder="Pesquisa por nome">
     </div>
 </div>
 <div class="row">
@@ -30,7 +33,12 @@
             </tbody>
         </table>
         <ng-template #loading>
-            <span>Carregando Linhas...</span>
+            <div *ngIf="error$ | async; else loadingNoError">
+                Erro ao carregar linhas. Tente novamente mais tarde.<br>                
+            </div>            
+            <ng-template #loadingNoError>
+                <span>Carregando Linhas...</span>
+            </ng-template>
         </ng-template>
         <hr>
     </div>
