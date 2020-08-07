@@ -3,6 +3,7 @@ import { ApiService } from '../services/api.service';
 import { Linha } from './linha';
 import { Observable, empty, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -15,20 +16,26 @@ export class HomeComponent implements OnInit {
 
   error$ = new Subject<boolean>();
 
+  public queryField : string;
+
   constructor(private service: ApiService) { }
 
   ngOnInit(): void {
-    this.onRefresh();
+    this.onRefresh('o');
   }
 
-  onRefresh(){
-    this.linhas$ = this.service.listaOnibus()
+  onRefresh(tipo){
+    this.linhas$ = this.service.listaLinhas(tipo)
       .pipe(
         catchError(error => {
           this.error$.next(true);
           return empty();          
         })
       );
+  }
+
+  onSearch(tipo){
+    this.onRefresh(tipo);
   }
 
 }

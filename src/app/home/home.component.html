@@ -1,8 +1,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="page-header">
-            <h1 class='float-left'>Lista Linhas</h1>                        
-            <button class='btn btn-secondary float-right' (click)="onRefresh()">Atualizar</button>
+            <h1 class='float-left'>Lista Linhas</h1>                                    
         </div>                
     </div>
     <div class='col-lg-12'>
@@ -11,7 +10,22 @@
 </div>
 <div class="row">
     <div class="col-lg-12 mb-2">
-        <input type="search" id="search" value="" class="form-control" placeholder="Pesquisa por nome">
+        <div class="input-group">
+            <input 
+                type="text" 
+                id="search"                 
+                class="form-control" 
+                placeholder="Pesquisa por Id, Nome ou Código."
+                [(ngModel)]="queryField"
+            />
+            <div class="input-group-append">
+                <select class="custom-select" id="inputGroupSelect01" (change)="onSearch($event.target.value)">
+                    <option value="o" selected>Ônibus</option>
+                    <option value="l">Lotação</option>
+                </select>
+            </div>
+        </div>
+        
     </div>
 </div>
 <div class="row">
@@ -25,7 +39,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let linha of linhas">
+                <tr *ngFor="let linha of linhas | filter:queryField">
                     <td>{{ linha.id }}</td>
                     <td>{{ linha.nome }}</td>
                     <td>{{ linha.codigo }}</td>
