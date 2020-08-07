@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../services/api.service';
+import { Linha } from './linha';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  linhas: Linha[];
+
+  constructor(private service: ApiService) { }
 
   ngOnInit(): void {
+    this.service.listaOnibus()
+      .subscribe(dados => this.linhas = dados);
   }
 
 }

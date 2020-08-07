@@ -16,26 +16,16 @@
         <table class="table" id="table">
             <thead>
                 <tr>
-                    <th>First column</th>
-                    <th>Second column</th>
-                    <th>Third column</th>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Código</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Introducing</td>
-                    <td>jQuery</td>
-                    <td>Searchable</td>
-                </tr>
-                <tr>
-                    <td>Lorem</td>
-                    <td>Ipsum</td>
-                    <td>Dolor</td>
-                </tr>
-                <tr>
-                    <td>Some</td>
-                    <td>More</td>
-                    <td>Data</td>
+                <tr *ngFor="let linha of linhas">
+                    <td>{{ linha.id }}</td>
+                    <td>{{ linha.nome }}</td>
+                    <td>{{ linha.codigo }}</td>
                 </tr>
             </tbody>
         </table>
