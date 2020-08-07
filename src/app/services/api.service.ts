@@ -16,7 +16,7 @@ export class ApiService {
 
   listaOnibus(){
     return this.http.get<Linha[]>(this.apiUrl)
-      .pipe(
+      .pipe(      
         tap(linhas => console.log('leu os onibus')),
         catchError(this.handleError('getOnibus', []))
       );

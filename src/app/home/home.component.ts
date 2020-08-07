@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Linha } from './linha';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -9,13 +10,12 @@ import { Linha } from './linha';
 })
 export class HomeComponent implements OnInit {
 
-  linhas: Linha[];
+  linhas$: Observable<Linha[]>;
 
   constructor(private service: ApiService) { }
 
   ngOnInit(): void {
-    this.service.listaOnibus()
-      .subscribe(dados => this.linhas = dados);
+    this.linhas$ = this.service.listaOnibus();
   }
 
 }
