@@ -6,7 +6,7 @@ consulta de linhas de ônibus e linhas de lotação.
 ## Instalação
 
 Para utilizar a aplicação certifiqui-se de ter instalado a versão mais recente do node, após isso,
-execute o comando `npm start`.
+execute o comando `npm install`.
 
 ## Servidor de desenvolvimento
 
