@@ -1,0 +1,15 @@
+  <div class="card" *ngIf="detalhes; else loading">
+    <div class="card-header">
+      {{ detalhes.nome }} - {{ detalhes.codigo }}
+    </div>
+    <div class="card-body">      
+      <div class='row'>
+        <div class='col-md-12' *ngFor="let det of detalhes.coordenadas">
+          <a href="{{'https://www.google.com/maps/?q='+det.lat+','+det.lng}}">{{ det.lat }} - {{ det.lng }}</a>      
+        </div>
+      </div>      
+    </div>
+  </div>
+  <ng-template #loading>    
+    <span>Carregando Detalhes...</span>
+  </ng-template>

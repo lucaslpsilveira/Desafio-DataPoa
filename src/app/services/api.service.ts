@@ -10,14 +10,19 @@ import { Linha } from '../home/linha'
 })
 export class ApiService {
 
-  private readonly apiUrl = 'http://www.poatransporte.com.br/php/facades/process.php?a=nc&p=%&t=';
+  private readonly apiUrl = 'http://www.poatransporte.com.br/php/facades/process.php';
 
   constructor(private http: HttpClient) { }
 
   listaLinhas(tipo){
-    return this.http.get<Linha[]>(this.apiUrl+tipo)
+    return this.http.get<Linha[]>(this.apiUrl+'?a=nc&p=%&t='+tipo).pipe();
+  }  
+
+  detalheLinha(id){
+    console.log('entrou com id', this.apiUrl+'?a=il&p='+id)
+    return this.http.get<any>(this.apiUrl+'?a=il&p='+id)
       .pipe(      
-        tap(linhas => console.log('leu os onibus')),        
+        tap(linha => console.log('leu a linha')),        
       );
   }  
 }

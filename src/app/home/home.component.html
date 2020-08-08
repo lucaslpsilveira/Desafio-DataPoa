@@ -43,6 +43,9 @@
                     <td>{{ linha.id }}</td>
                     <td>{{ linha.nome }}</td>
                     <td>{{ linha.codigo }}</td>
+                    <td>
+                        <button class="btn btn-primary" [routerLink]="['linha',linha.id]">Detalhes</button>
+                    </td>
                 </tr>
             </tbody>
         </table>

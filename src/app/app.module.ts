@@ -7,11 +7,13 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { LinhaDetalhesComponent } from './linha-detalhes/linha-detalhes.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    LinhaDetalhesComponent
   ],
   imports: [
     BrowserModule,
